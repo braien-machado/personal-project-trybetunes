@@ -1,0 +1,22 @@
+.login-page {
+  align-items: center;
+  background-color: rgb(224, 224, 224);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  text-align: center;
+}
+.login-container {
+  background-color: white;
+  border-bottom: 3px solid rgb(160, 159, 159);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 100px; 
+  text-align: center; 
+}
+
+.login-container label {
+  padding-bottom: 15px;
+}
