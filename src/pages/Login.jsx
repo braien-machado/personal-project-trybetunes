@@ -11,6 +11,7 @@ class Login extends React.Component {
       name: '',
       isButtonDisabled: true,
       loading: false,
+      userCreated: false,
     };
   }
 
@@ -23,7 +24,7 @@ class Login extends React.Component {
     const { name } = this.state;
     this.setState({ loading: true }, async () => {
       await createUser({ name });
-      this.setState({ loading: false }, () => console.log('oi'));
+      this.setState({ loading: false, userCreated: true });
     });
   }
 
@@ -38,7 +39,8 @@ class Login extends React.Component {
   }
 
   render() {
-    const { name, isButtonDisabled, loading } = this.state;
+    const { name, isButtonDisabled, loading, userCreated } = this.state;
+    if (userCreated) return <Redirect to="/search" />;
     if (loading) return <Loading />;
     return (
       <div data-testid="page-login" className="login-page">
