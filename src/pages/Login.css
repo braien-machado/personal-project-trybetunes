@@ -7,14 +7,15 @@
   justify-content: center;
   text-align: center;
 }
+
 .login-container {
   background-color: white;
   border-bottom: 3px solid rgb(160, 159, 159);
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  padding: 50px 100px; 
-  text-align: center; 
+  padding: 50px 100px;
+  text-align: center;
 }
 
 .login-container label {
