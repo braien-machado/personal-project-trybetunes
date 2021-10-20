@@ -1,9 +1,13 @@
+/* https://css-tricks.com/forums/topic/center-the-loading-gif-in-the-middle-of-the-screen/ */
+
+/* .loading-container {
+  position: relative
+  
+} */
+
 .loading {
-  align-items: center;
-  background-color: rgb(224, 224, 224);
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  justify-content: center;
-  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -50px 0px 0px -50px;
 }

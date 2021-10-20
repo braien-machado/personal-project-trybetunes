@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
@@ -14,17 +15,16 @@ class Header extends React.Component {
   }
 
   componentDidMount() {
-    // getUser()
-    //   .then((response) => response.name)
-    //   .then((name) => this.setState({ name }));
     this.getUserName();
   }
 
   getUserName = () => {
+    const { headerIsReady } = this.props;
     this.setState({ loading: true }, () => {
       getUser()
         .then((response) => response.name)
-        .then((name) => this.setState({ name }, this.setState({ loading: false })));
+        .then((name) => this.setState({ name }, this.setState({ loading: false },
+          () => headerIsReady())));
     });
   }
   // Criar função para mudar a cor do link que corresponde a url atual
@@ -77,5 +77,13 @@ class Header extends React.Component {
     );
   }
 }
+
+Header.propTypes = {
+  headerIsReady: PropTypes.func,
+};
+
+Header.defaultProps = {
+  headerIsReady: () => null,
+};
 
 export default Header;

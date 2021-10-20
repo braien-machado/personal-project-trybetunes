@@ -1,5 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
+import Loading from '../components/Loading';
+import searchAlbumsAPI from '../services/searchAlbumsAPI';
 
 class Search extends React.Component {
   constructor(props) {
@@ -7,7 +9,18 @@ class Search extends React.Component {
     this.state = {
       isButtonDisabled: true,
       name: '',
+      loading: true,
+      header: false,
+      data: [],
     };
+  }
+
+  componentDidMount() {
+    this.toggleLoading(false);
+  }
+
+  toggleLoading = (bool) => {
+    this.setState({ loading: bool });
   }
 
   handleChange = ({ target }) => {
@@ -25,29 +38,54 @@ class Search extends React.Component {
     }
   }
 
-  render() {
-    const { isButtonDisabled } = this.state;
-    return (
-      <div data-testid="page-search">
-        <Header />
+  handleClick = () => {
+    const { name } = this.state;
+    this.setState({ loading: true }, () => {
+      searchAlbumsAPI(name)
+        .then((data) => this.setState({ data }))
+        .then(() => this.toggleLoading(false));
+    });
+  }
+
+  headerOn = () => this.setState({ header: true })
+
+  form = (bool, string) => {
+    const { loading, header } = this.state;
+    if (loading && header) {
+      return <Loading />;
+    }
+    if (!loading && header) {
+      return (
         <form>
           <label htmlFor="search-artist-input">
             <input
-              type="text"
-              placeholder="Nome do Artista"
-              id="search-artist-input"
               data-testid="search-artist-input"
+              id="search-artist-input"
               onChange={ this.handleChange }
+              placeholder="Nome do Artista"
+              type="text"
+              value={ string }
             />
           </label>
           <button
-            type="button"
-            disabled={ isButtonDisabled }
             data-testid="search-artist-button"
+            disabled={ bool }
+            onClick={ this.handleClick }
+            type="button"
           >
             Pesquisar
           </button>
         </form>
+      );
+    }
+  }
+
+  render() {
+    const { isButtonDisabled, name, loading, header } = this.state;
+    return (
+      <div data-testid="page-search">
+        <Header headerIsReady={ this.headerOn } />
+        { (loading && header) ? <Loading /> : this.form(isButtonDisabled, name)}
       </div>
     );
   }
