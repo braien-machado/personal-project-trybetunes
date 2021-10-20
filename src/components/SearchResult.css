@@ -5,10 +5,10 @@
 }
 
 .album-card {
-  width: 200px;
   border-bottom: 1px solid black;
   margin-bottom: 15px;
   text-decoration: none;
+  width: 200px;
 }
 
 .album-card img {
@@ -16,7 +16,7 @@
 }
 
 .album-card p {
-  font-weight: lighter;
+  font-weight: 200;
 }
 
 .link {
@@ -24,9 +24,9 @@
 }
 
 .album-card .collection-name {
+  color: black;
   font-weight: 500;
   text-decoration: none;
-  color: black;
 }
 
 .album-card .collection-name:hover {
