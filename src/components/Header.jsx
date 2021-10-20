@@ -27,7 +27,7 @@ class Header extends React.Component {
         .then((name) => this.setState({ name }, this.setState({ loading: false })));
     });
   }
-
+  // Criar função para mudar a cor do link que corresponde a url atual
   // setActive = ({ target }) => {
   //   const { className } = target;
 
