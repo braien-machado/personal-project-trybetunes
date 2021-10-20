@@ -1,6 +1,7 @@
 import React from 'react';
 import { getUser } from '../services/userAPI';
 import Loading from './Loading';
+import './Header.css';
 
 class Header extends React.Component {
   constructor() {
@@ -30,10 +31,17 @@ class Header extends React.Component {
     const { name, loading } = this.state;
     if (loading) return <Loading />;
     return (
-      <header data-testid="header-component" className="header">
-        <p data-testid="header-user-name">
-          {`Olá, ${name}`}
-        </p>
+      <header data-testid="header-component" className="header-component">
+        <div className="logo-container">
+          <i className="fas fa-headphones" />
+          <p>TrybeTunes</p>
+        </div>
+        <div className="user-name-container">
+          <i className="far fa-user user-icon" />
+          <p data-testid="header-user-name" className="header-user-name">
+            {`Olá, ${name}`}
+          </p>
+        </div>
       </header>
     );
   }

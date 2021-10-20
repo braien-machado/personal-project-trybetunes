@@ -1,0 +1,23 @@
+.header-component {
+  background-color: rgb(30, 134, 30);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.user-name-container {
+  display:flex;
+  align-items: center;
+}
+
+p {
+  margin: 0;
+  font-weight: 700;
+  margin-left: 10px
+}
