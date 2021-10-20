@@ -57,7 +57,7 @@ class Login extends React.Component {
     if (loading) return <Loading />;
     return (
       <div data-testid="page-login" className="login-page">
-        <header className="login-header">
+        <header>
           <i className="fas fa-headphones fa-5x" />
           <h1>TrybeTunes</h1>
         </header>
