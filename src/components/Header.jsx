@@ -28,25 +28,50 @@ class Header extends React.Component {
     });
   }
 
+  // setActive = ({ target }) => {
+  //   const { className } = target;
+
+  // }
+
   render() {
     const { name, loading } = this.state;
     if (loading) return <Loading />;
     return (
       <header data-testid="header-component" className="header-component">
-        <div className="logo-container">
-          <i className="fas fa-headphones" />
-          <p>TrybeTunes</p>
+        <div className="header-container">
+          <div className="logo-container">
+            <i className="fas fa-headphones" />
+            <p>TrybeTunes</p>
+          </div>
+          <div className="user-name-container">
+            <i className="far fa-user user-icon" />
+            <p data-testid="header-user-name" className="header-user-name">
+              {`Olá, ${name}`}
+            </p>
+          </div>
         </div>
-        <div className="user-name-container">
-          <i className="far fa-user user-icon" />
-          <p data-testid="header-user-name" className="header-user-name">
-            {`Olá, ${name}`}
-          </p>
-        </div>
-        <nav className="links">
-          <Link to="/search" data-testid="link-to-search">Pesquisa</Link>
-          <Link to="/favorites" data-testid="link-to-favorites">Favoritas</Link>
-          <Link to="/profile" data-testid="link-to-profile">Perfil</Link>
+        <nav className="nav">
+          <Link
+            to="/search"
+            data-testid="link-to-search"
+            className="link-search"
+          >
+            <h3>Pesquisa</h3>
+          </Link>
+          <Link
+            to="/favorites"
+            data-testid="link-to-favorites"
+            className="link-favorites"
+          >
+            <h3>Favoritos</h3>
+          </Link>
+          <Link
+            to="/profile"
+            data-testid="link-to-profile"
+            className="link-profile"
+          >
+            <h3>Perfil</h3>
+          </Link>
         </nav>
       </header>
     );

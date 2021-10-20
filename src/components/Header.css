@@ -1,5 +1,5 @@
-.header-component {
-  background-color: rgb(30, 134, 30);
+.header-container {
+  background-color: rgb(8, 53, 8);
   color: white;
   display: flex;
   justify-content: space-between;
@@ -16,3 +16,32 @@ p {
   margin: 0;
   margin-left: 10px;
 }
+
+/* Para fazer o menu de navegação: https://www.w3schools.com/howto/howto_js_topnav.asp */
+.nav {
+  background-color: grey;
+  overflow: hidden;
+}
+
+.link-search, .link-favorites, .link-profile {
+  color: white;
+  float: left;
+  font-size: 17px;
+  padding: 14px 16px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.link-search h3, .link-favorites h3, .link-profile h3 {
+  margin: 0;
+}
+
+.link-search:hover, .link-favorites:hover, .link-profile:hover {
+  background-color: rgb(192, 192, 192);
+  color: rgb(8, 53, 8);
+}
+
+/* .active {
+  background-color: rgb(8, 53, 8);
+  color: white;
+} */
