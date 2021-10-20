@@ -1,13 +1,10 @@
-/* https://css-tricks.com/forums/topic/center-the-loading-gif-in-the-middle-of-the-screen/ */
-
 /* .loading-container {
   position: relative
-  
 } */
 
 .loading {
+  left: 50%;
+  margin: -50px 0 0 -50px;
   position: absolute;
   top: 50%;
-  left: 50%;
-  margin: -50px 0px 0px -50px;
 }

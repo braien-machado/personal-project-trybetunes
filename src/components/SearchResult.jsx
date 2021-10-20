@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './SearchResult.css';
 
 export default class SearchResult extends Component {
   render() {
@@ -9,7 +10,7 @@ export default class SearchResult extends Component {
       return (
         <div>
           <h3>{ `Resultado de álbuns de: ${name}`}</h3>
-          <div>
+          <div className="album-cards">
             {result.map((album) => {
               const { artistName, collectionId, collectionName, artworkUrl100 } = album;
               return (
