@@ -1,26 +1,21 @@
 import React from 'react';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
+import SearchResult from '../components/SearchResult';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isButtonDisabled: true,
-      name: '',
-      loading: true,
-      header: false,
       data: [],
+      header: false,
+      isButtonDisabled: true,
+      loading: false,
+      name: '',
+      nameSearched: '',
+      searchDone: false,
     };
-  }
-
-  componentDidMount() {
-    this.toggleLoading(false);
-  }
-
-  toggleLoading = (bool) => {
-    this.setState({ loading: bool });
   }
 
   handleChange = ({ target }) => {
@@ -42,8 +37,8 @@ class Search extends React.Component {
     const { name } = this.state;
     this.setState({ loading: true }, () => {
       searchAlbumsAPI(name)
-        .then((data) => this.setState({ data }))
-        .then(() => this.toggleLoading(false));
+        .then((data) => this.setState({ data, nameSearched: name, name: '' }))
+        .then(() => this.setState({ loading: false, searchDone: true }));
     });
   }
 
@@ -81,11 +76,16 @@ class Search extends React.Component {
   }
 
   render() {
-    const { isButtonDisabled, name, loading, header } = this.state;
+    const { isButtonDisabled, name, data, searchDone, nameSearched } = this.state;
     return (
       <div data-testid="page-search">
         <Header headerIsReady={ this.headerOn } />
-        { (loading && header) ? <Loading /> : this.form(isButtonDisabled, name)}
+        {this.form(isButtonDisabled, name)}
+        <SearchResult
+          result={ data }
+          awaitedRender={ searchDone }
+          name={ nameSearched }
+        />
       </div>
     );
   }
