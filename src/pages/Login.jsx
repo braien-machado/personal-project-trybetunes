@@ -5,6 +5,10 @@ import { createUser } from '../services/userAPI';
 import Loading from '../components/Loading';
 
 class Login extends React.Component {
+  // Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method.
+  // Para resolver esse erro, encontrei a solução nos seguitnes links:
+  // 'https://github.com/material-components/material-components-web-react/issues/434'
+  // https://stackoverflow.com/questions/53414723/typescript-react-avoid-setstate-on-unmounted-components
   constructor(props) {
     super(props);
     this.state = {
@@ -13,6 +17,15 @@ class Login extends React.Component {
       loading: false,
       userCreated: false,
     };
+    this.mounted = false;
+  }
+
+  componentDidMount() {
+    this.mounted = true;
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
   }
 
   handleChange = ({ target }) => {
@@ -24,7 +37,7 @@ class Login extends React.Component {
     const { name } = this.state;
     this.setState({ loading: true }, async () => {
       await createUser({ name });
-      this.setState({ loading: false, userCreated: true });
+      if (this.mounted) this.setState({ userCreated: true, loading: false });
     });
   }
 
