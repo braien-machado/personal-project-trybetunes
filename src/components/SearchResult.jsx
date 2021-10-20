@@ -14,15 +14,16 @@ export default class SearchResult extends Component {
             {result.map((album) => {
               const { artistName, collectionId, collectionName, artworkUrl100 } = album;
               return (
-                <div key={ collectionId } className="album-container">
+                <div key={ collectionId } className="album-card">
                   <img src={ artworkUrl100 } alt={ `${collectionName} cover` } />
                   <Link
                     to={ `/album/${collectionId}` }
                     data-testid={ `link-to-album-${collectionId}` }
+                    className="link"
                   >
-                    <h3>{ collectionName }</h3>
+                    <p className="collection-name">{ collectionName }</p>
                   </Link>
-                  <h4>{ artistName }</h4>
+                  <p>{ artistName }</p>
                 </div>
               );
             })}
