@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import Loading from '../components/Loading';
 import SearchResult from '../components/SearchResult';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import './Search.css';
 
 class Search extends React.Component {
   constructor(props) {
@@ -51,7 +52,7 @@ class Search extends React.Component {
     }
     if (!loading && header) {
       return (
-        <form>
+        <form className="form">
           <label htmlFor="search-artist-input">
             <input
               data-testid="search-artist-input"
