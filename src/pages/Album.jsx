@@ -87,7 +87,7 @@ class Album extends React.Component {
                     saveFavInState={ this.saveFavInState }
                     trackId={ trackId }
                   />
-                )
+                );
               })}
           </div>
         </main>
