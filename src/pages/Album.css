@@ -1,5 +1,6 @@
 .playlist {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .album-info {
@@ -22,11 +23,26 @@
   padding: 10px 0;
 }
 
+.music-card label {
+  align-items: center;
+  display: flex;
+}
+
+.music-card label input {
+  padding: 0;
+  margin: 0;
+}
+
+.music-card label p {
+  padding: 0;
+  margin: 0 20px 0 15px;
+}
+
 .music-card h4 {
   margin-left: 20px;
   padding-right: 15px;
   text-align: left;
-  width: 100px;
+  width: 50%;
 }
 
 .music-card audio {

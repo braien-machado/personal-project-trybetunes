@@ -58,12 +58,13 @@ class Album extends React.Component {
           <div className="music-list">
             {musics.filter((data) => data.wrapperType === 'track' || data.kind === 'song')
               .map((music, index) => {
-                const { trackName, previewUrl } = music;
+                const { trackName, previewUrl, trackId } = music;
                 return (
                   <MusicCard
                     key={ index }
                     trackName={ trackName }
                     previewUrl={ previewUrl }
+                    trackId={ trackId }
                   />
                 );
               })}
