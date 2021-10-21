@@ -1,18 +1,16 @@
 .playlist {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-top: 5%;
 }
 
-.album-info {
-  margin: 5%;
+.playlist h3 {
+  position: relative;
 }
 
 .album-info img {
   width: 100%;
-}
-
-.music-list {
-  margin-top: 5%;
 }
 
 .music-card {

@@ -4,7 +4,6 @@ import Loading from '../components/Loading';
 import MusicCard from '../components/MusicCard';
 import './Album.css';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
-import './Favorites.css';
 
 class Favorites extends React.Component {
   constructor(props) {
