@@ -34,6 +34,8 @@ class Album extends React.Component {
         }));
   }
 
+  toogleLoading = (bool) => this.setState({ loading: bool });
+
   headerOn = () => this.setState({ header: true })
 
   playlist = () => {
@@ -57,17 +59,13 @@ class Album extends React.Component {
           </div>
           <div className="music-list">
             {musics.filter((data) => data.wrapperType === 'track' || data.kind === 'song')
-              .map((music, index) => {
-                const { trackName, previewUrl, trackId } = music;
-                return (
-                  <MusicCard
-                    key={ index }
-                    trackName={ trackName }
-                    previewUrl={ previewUrl }
-                    trackId={ trackId }
-                  />
-                );
-              })}
+              .map((music, index) => (
+                <MusicCard
+                  key={ index }
+                  music={ music }
+                  toogleLoading={ this.toogleLoading }
+                />
+              ))}
           </div>
         </main>
       );

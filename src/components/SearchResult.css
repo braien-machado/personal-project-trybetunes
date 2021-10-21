@@ -6,7 +6,7 @@
 
 .album-card {
   border-bottom: 1px solid black;
-  margin-bottom: 15px;
+  margin: 0 10px 15px 10px;
   text-decoration: none;
   width: 200px;
 }
