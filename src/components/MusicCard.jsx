@@ -20,7 +20,7 @@ export default class MusicCard extends Component {
   }
 
   render() {
-    const { music: { trackName, previewUrl, trackId }, checked } = this.props;
+    const { music: { trackName, previewUrl }, checked, trackId } = this.props;
     return (
       <div className="music-card">
         <h4>{ trackName }</h4>
@@ -49,8 +49,8 @@ MusicCard.propTypes = {
   music: PropTypes.shape({
     previewUrl: PropTypes.string.isRequired,
     trackName: PropTypes.string.isRequired,
-    trackId: PropTypes.number.isRequired,
   }).isRequired,
+  trackId: PropTypes.number.isRequired,
   toogleLoading: PropTypes.func.isRequired,
   checked: PropTypes.bool.isRequired,
   saveFavInState: PropTypes.func.isRequired,

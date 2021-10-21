@@ -74,17 +74,21 @@ class Album extends React.Component {
           </div>
           <div className="music-list">
             {musics.filter((data) => data.wrapperType === 'track' || data.kind === 'song')
-              .map((music, index) => (
-                <MusicCard
-                  key={ index }
-                  music={ music }
-                  toogleLoading={ this.toogleLoading }
-                  checked={ favoriteSongs.some(
-                    (song) => JSON.stringify(song) === JSON.stringify(music),
-                  ) }
-                  saveFavInState={ this.saveFavInState }
-                />
-              ))}
+              .map((music, index) => {
+                const { trackId } = music;
+                return (
+                  <MusicCard
+                    key={ index }
+                    music={ music }
+                    toogleLoading={ this.toogleLoading }
+                    checked={ favoriteSongs.some(
+                      (song) => JSON.stringify(song) === JSON.stringify(music),
+                    ) }
+                    saveFavInState={ this.saveFavInState }
+                    trackId={ trackId }
+                  />
+                )
+              })}
           </div>
         </main>
       );

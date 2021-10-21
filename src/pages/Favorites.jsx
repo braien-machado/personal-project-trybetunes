@@ -47,15 +47,19 @@ class Favorites extends React.Component {
         <main className="playlist">
           <h3>Músicas favoritas:</h3>
           <div className="music-list">
-            {favoriteSongs.map((music, index) => (
-              <MusicCard
-                key={ index }
-                music={ music }
-                toogleLoading={ this.toogleLoading }
-                checked
-                saveFavInState={ this.saveFavInState }
-              />
-            ))}
+            {favoriteSongs.map((music, index) => {
+              const { trackId } = music;
+              return (
+                <MusicCard
+                  key={ index }
+                  music={ music }
+                  toogleLoading={ this.toogleLoading }
+                  checked
+                  saveFavInState={ this.saveFavInState }
+                  trackId={ parseInt(trackId, 10) }
+                />
+              );
+            })}
           </div>
         </main>
       );
