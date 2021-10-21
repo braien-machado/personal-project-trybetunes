@@ -1,0 +1,48 @@
+.playlist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.playlist h3 {
+  font-size: 1.5rem;
+  margin-top: 4.5rem;
+}
+
+.music-list {
+  margin-top: 5%;
+}
+
+.music-card {
+  align-items: center;
+  border-top: 3px solid rgb(228, 223, 223);
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 0;
+}
+
+.music-card label {
+  align-items: center;
+  display: flex;
+}
+
+.music-card label input {
+  margin: 0;
+  padding: 0;
+}
+
+.music-card label p {
+  margin: 0 20px 0 15px;
+  padding: 0;
+}
+
+.music-card h4 {
+  margin-left: 20px;
+  padding-right: 15px;
+  text-align: left;
+  width: 50%;
+}
+
+.music-card audio {
+  margin-right: 20px;
+}
