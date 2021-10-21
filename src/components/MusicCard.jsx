@@ -1,16 +1,22 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, removeSong } from '../services/favoriteSongsAPI';
 
 export default class MusicCard extends Component {
   toogleFavorite = ({ target: { checked } }) => (checked
     ? this.addFavorite()
-    : console.log('unchecked'));
+    : this.removeFavorite());
 
   addFavorite = () => {
     const { music, toogleLoading, saveFavInState } = this.props;
     toogleLoading(true);
     addSong(music).then(() => toogleLoading(false)).then(saveFavInState());
+  }
+
+  removeFavorite = () => {
+    const { music, toogleLoading, saveFavInState } = this.props;
+    toogleLoading(true);
+    removeSong(music).then(() => toogleLoading(false)).then(saveFavInState());
   }
 
   render() {
