@@ -1,11 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Header from '../components/Header';
-import getMusics from '../services/musicsAPI';
 import Loading from '../components/Loading';
 import MusicCard from '../components/MusicCard';
 import './Album.css';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
+import './Favorites.css';
 
 class Favorites extends React.Component {
   constructor(props) {
