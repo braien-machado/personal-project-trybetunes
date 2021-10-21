@@ -24,17 +24,24 @@ class Album extends React.Component {
   }
 
   componentDidMount() {
+    this.mounted = true;
     const { id } = this.state;
-    getFavoriteSongs().then((songs) => this.setState({ favoriteSongs: songs }))
-      .then(() => getMusics(id)
-        .then((result) => this.setState({ musics: result },
-          () => {
-            this.setState((prevState) => ({
-              artistName: prevState.musics[0].artistName,
-              collectionName: prevState.musics[0].collectionName,
-              albumCoverUrl: prevState.musics[0].artworkUrl100,
-            }));
-          })));
+    if (this.mounted) {
+      getFavoriteSongs().then((songs) => this.setState({ favoriteSongs: songs }))
+        .then(() => getMusics(id)
+          .then((result) => this.setState({ musics: result },
+            () => {
+              this.setState((prevState) => ({
+                artistName: prevState.musics[0].artistName,
+                collectionName: prevState.musics[0].collectionName,
+                albumCoverUrl: prevState.musics[0].artworkUrl100,
+              }));
+            })));
+    }
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
   }
 
   saveFavInState = () => {
@@ -85,8 +92,6 @@ class Album extends React.Component {
   }
 
   render() {
-    const { favoriteSongs } = this.state;
-    console.log(favoriteSongs);
     return (
       <div data-testid="page-album">
         <Header headerIsReady={ this.headerOn } />

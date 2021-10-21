@@ -47,4 +47,5 @@ MusicCard.propTypes = {
   }).isRequired,
   toogleLoading: PropTypes.func.isRequired,
   checked: PropTypes.bool.isRequired,
+  saveFavInState: PropTypes.func.isRequired,
 };
