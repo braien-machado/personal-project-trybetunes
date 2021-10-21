@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import Loading from '../components/Loading';
 import MusicCard from '../components/MusicCard';
+import './Album.css';
 
 class Album extends React.Component {
   constructor(props) {
@@ -54,17 +55,19 @@ class Album extends React.Component {
             <h1 data-testid="artist-name">{ artistName }</h1>
             <h2 data-testid="album-name">{ collectionName }</h2>
           </div>
-          {musics.filter((data) => data.wrapperType === 'track' || data.kind === 'song')
-            .map((music, index) => {
-              const { trackName, previewUrl } = music;
-              return (
-                <MusicCard
-                  key={ index }
-                  trackName={ trackName }
-                  previewUrl={ previewUrl }
-                />
-              );
-            })}
+          <div className="music-list">
+            {musics.filter((data) => data.wrapperType === 'track' || data.kind === 'song')
+              .map((music, index) => {
+                const { trackName, previewUrl } = music;
+                return (
+                  <MusicCard
+                    key={ index }
+                    trackName={ trackName }
+                    previewUrl={ previewUrl }
+                  />
+                );
+              })}
+          </div>
         </main>
       );
     }

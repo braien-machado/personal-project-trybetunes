@@ -1,0 +1,34 @@
+.playlist {
+  display: flex;
+}
+
+.album-info {
+  margin: 5%;
+}
+
+.album-info img {
+  width: 100%;
+}
+
+.music-list {
+  margin-top: 5%;
+}
+
+.music-card {
+  align-items: center;
+  border-top: 3px solid rgb(228, 223, 223);
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 0;
+}
+
+.music-card h4 {
+  margin-left: 20px;
+  padding-right: 15px;
+  text-align: left;
+  width: 100px;
+}
+
+.music-card audio {
+  margin-right: 20px;
+}
