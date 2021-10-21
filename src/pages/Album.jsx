@@ -3,18 +3,20 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import Loading from '../components/Loading';
+import MusicCard from '../components/MusicCard';
 
 class Album extends React.Component {
   constructor(props) {
     super(props);
     const { match: { params: { id } } } = this.props;
     this.state = {
-      id,
-      musics: [],
-      header: false,
-      collectionName: '',
+      albumCoverUrl: '',
       artistName: '',
+      collectionName: '',
+      header: false,
+      id,
       loading: false,
+      musics: [],
     };
   }
 
@@ -26,33 +28,53 @@ class Album extends React.Component {
           this.setState((prevState) => ({
             artistName: prevState.musics[0].artistName,
             collectionName: prevState.musics[0].collectionName,
+            albumCoverUrl: prevState.musics[0].artworkUrl100,
           }));
         }));
   }
 
   headerOn = () => this.setState({ header: true })
 
-  playlist = (collection, artist) => {
-    const { loading, header } = this.state;
+  playlist = () => {
+    const {
+      loading,
+      header,
+      musics,
+      artistName,
+      collectionName,
+      albumCoverUrl } = this.state;
     if (loading && header) {
       return <Loading />;
     }
     if (!loading && header) {
       return (
         <main className="playlist">
-          <h1 data-testid="artist-name">{ artist }</h1>
-          <h2 data-testid="album-name">{ collection }</h2>
+          <div className="album-info">
+            <img src={ albumCoverUrl } alt="" />
+            <h1 data-testid="artist-name">{ artistName }</h1>
+            <h2 data-testid="album-name">{ collectionName }</h2>
+          </div>
+          {musics.filter((data) => data.wrapperType === 'track' || data.kind === 'song')
+            .map((music, index) => {
+              const { trackName, previewUrl } = music;
+              return (
+                <MusicCard
+                  key={ index }
+                  trackName={ trackName }
+                  previewUrl={ previewUrl }
+                />
+              );
+            })}
         </main>
       );
     }
   }
 
   render() {
-    const { collectionName, artistName } = this.state;
     return (
       <div data-testid="page-album">
         <Header headerIsReady={ this.headerOn } />
-        {this.playlist(collectionName, artistName)}
+        {this.playlist()}
       </div>
     );
   }
