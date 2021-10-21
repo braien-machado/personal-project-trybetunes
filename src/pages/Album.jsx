@@ -5,6 +5,7 @@ import getMusics from '../services/musicsAPI';
 import Loading from '../components/Loading';
 import MusicCard from '../components/MusicCard';
 import './Album.css';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends React.Component {
   constructor(props) {
@@ -18,20 +19,26 @@ class Album extends React.Component {
       id,
       loading: false,
       musics: [],
+      favoriteSongs: [],
     };
   }
 
   componentDidMount() {
     const { id } = this.state;
-    getMusics(id)
-      .then((result) => this.setState({ musics: result },
-        () => {
-          this.setState((prevState) => ({
-            artistName: prevState.musics[0].artistName,
-            collectionName: prevState.musics[0].collectionName,
-            albumCoverUrl: prevState.musics[0].artworkUrl100,
-          }));
-        }));
+    getFavoriteSongs().then((songs) => this.setState({ favoriteSongs: songs }))
+      .then(() => getMusics(id)
+        .then((result) => this.setState({ musics: result },
+          () => {
+            this.setState((prevState) => ({
+              artistName: prevState.musics[0].artistName,
+              collectionName: prevState.musics[0].collectionName,
+              albumCoverUrl: prevState.musics[0].artworkUrl100,
+            }));
+          })));
+  }
+
+  saveFavInState = () => {
+    getFavoriteSongs().then((songs) => this.setState({ favoriteSongs: songs }));
   }
 
   toogleLoading = (bool) => this.setState({ loading: bool });
@@ -45,7 +52,8 @@ class Album extends React.Component {
       musics,
       artistName,
       collectionName,
-      albumCoverUrl } = this.state;
+      albumCoverUrl,
+      favoriteSongs } = this.state;
     if (loading && header) {
       return <Loading />;
     }
@@ -64,6 +72,10 @@ class Album extends React.Component {
                   key={ index }
                   music={ music }
                   toogleLoading={ this.toogleLoading }
+                  checked={ favoriteSongs.some(
+                    (song) => JSON.stringify(song) === JSON.stringify(music),
+                  ) }
+                  saveFavInState={ this.saveFavInState }
                 />
               ))}
           </div>
@@ -73,6 +85,8 @@ class Album extends React.Component {
   }
 
   render() {
+    const { favoriteSongs } = this.state;
+    console.log(favoriteSongs);
     return (
       <div data-testid="page-album">
         <Header headerIsReady={ this.headerOn } />

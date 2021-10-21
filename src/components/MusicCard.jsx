@@ -3,26 +3,18 @@ import React, { Component } from 'react';
 import { addSong } from '../services/favoriteSongsAPI';
 
 export default class MusicCard extends Component {
-  constructor() {
-    super();
-    this.state = {
-      checked: false,
-    };
-  }
-
   toogleFavorite = ({ target: { checked } }) => (checked
-    ? this.setState({ checked: true }, this.addFavorite())
+    ? this.addFavorite()
     : console.log('unchecked'));
 
   addFavorite = () => {
-    const { music, toogleLoading } = this.props;
+    const { music, toogleLoading, saveFavInState } = this.props;
     toogleLoading(true);
-    addSong(music).then(() => toogleLoading(false));
+    addSong(music).then(() => toogleLoading(false)).then(saveFavInState());
   }
 
   render() {
-    const { music: { trackName, previewUrl, trackId } } = this.props;
-    const { checked } = this.state;
+    const { music: { trackName, previewUrl, trackId }, checked } = this.props;
     return (
       <div className="music-card">
         <h4>{ trackName }</h4>
@@ -54,4 +46,5 @@ MusicCard.propTypes = {
     trackId: PropTypes.number.isRequired,
   }).isRequired,
   toogleLoading: PropTypes.func.isRequired,
+  checked: PropTypes.bool.isRequired,
 };
