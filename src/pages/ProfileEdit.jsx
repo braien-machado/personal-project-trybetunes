@@ -33,15 +33,17 @@ class ProfileEdit extends React.Component {
       () => this.validateButton());
   }
 
+  // Para validar e-mail via regex: "https://www.wired.com/2008/08/four-regular-expressions-to-check-email-addresses/"
+
   validateButton = () => {
+    const regex = /([a-z0-9][-a-z0-9_+.]*[a-z0-9])@([a-z0-9][-a-z0-9.]*[a-z0-9]\.(com))/g;
     const { profile } = this.state;
     const values = Object.values(profile);
-    if (values.every((value) => value.length > 0)) {
+    if (values.every((value) => value.length > 0) && profile.email.match(regex)) {
       this.setState({ isButtonDisabled: false });
     } else {
       this.setState({ isButtonDisabled: true });
     }
-    console.log(values);
     return null;
   }
 
