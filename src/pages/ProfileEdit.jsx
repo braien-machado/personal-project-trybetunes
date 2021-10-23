@@ -1,7 +1,8 @@
 import React from 'react';
+import { Redirect } from 'react-router';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
-import { getUser } from '../services/userAPI';
+import { getUser, updateUser } from '../services/userAPI';
 
 class ProfileEdit extends React.Component {
   constructor() {
@@ -16,12 +17,19 @@ class ProfileEdit extends React.Component {
         description: '',
       },
       isButtonDisabled: true,
+      profileUpdated: false,
     };
+    this.mounted = false;
   }
 
   componentDidMount() {
+    this.mounted = true;
     this.toogleLoading(true);
     getUser().then((data) => this.setState({ profile: data, loading: false }));
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
   }
 
   toogleLoading = (bool) => this.setState({ loading: bool });
@@ -31,6 +39,17 @@ class ProfileEdit extends React.Component {
   handleChange = ({ target: { name, value } }) => {
     this.setState((prevState) => ({ profile: { ...prevState.profile, [name]: value } }),
       () => this.validateButton());
+  }
+
+  handleClick = () => {
+    const { profile: { name, email, description, image } } = this.state;
+    this.toogleLoading(true);
+    updateUser({ name, email, description, image })
+      .then(() => {
+        if (this.mounted) {
+          this.setState({ profileUpdated: true, loading: false });
+        }
+      });
   }
 
   // Para validar e-mail via regex: "https://www.wired.com/2008/08/four-regular-expressions-to-check-email-addresses/"
@@ -53,7 +72,9 @@ class ProfileEdit extends React.Component {
       header,
       profile: { name, email, image, description },
       isButtonDisabled,
+      profileUpdated,
     } = this.state;
+    if (profileUpdated) { return <Redirect to="/profile" />; }
     return (
       <div data-testid="page-profile-edit">
         <Header headerIsReady={ this.headerOn } />
@@ -108,6 +129,7 @@ class ProfileEdit extends React.Component {
               disabled={ isButtonDisabled }
               type="button"
               data-testid="edit-button-save"
+              onClick={ this.handleClick }
             >
               Salvar
             </button>
