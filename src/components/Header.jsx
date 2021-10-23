@@ -27,11 +27,6 @@ class Header extends React.Component {
           () => headerIsReady())));
     });
   }
-  // Criar função para mudar a cor do link que corresponde a url atual
-  // setActive = ({ target }) => {
-  //   const { className } = target;
-
-  // }
 
   render() {
     const { name, loading } = this.state;
@@ -46,7 +41,8 @@ class Header extends React.Component {
           <div className="user-name-container">
             <i className="far fa-user user-icon" />
             <p data-testid="header-user-name" className="header-user-name">
-              {`Olá, ${name}`}
+              <span>{ 'Olá, ' }</span>
+              <span>{ name }</span>
             </p>
           </div>
         </div>
