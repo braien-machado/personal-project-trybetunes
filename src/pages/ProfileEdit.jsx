@@ -25,7 +25,8 @@ class ProfileEdit extends React.Component {
   componentDidMount() {
     this.mounted = true;
     this.toogleLoading(true);
-    getUser().then((data) => this.setState({ profile: data, loading: false }));
+    getUser().then((data) => this.setState({ profile: data, loading: false },
+      () => this.validateButton()));
   }
 
   componentWillUnmount() {

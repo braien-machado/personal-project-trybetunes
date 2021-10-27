@@ -21,14 +21,16 @@
 
 .link {
   text-decoration: none;
+  color: black;
 }
 
 .album-card .collection-name {
-  color: black;
   font-weight: 500;
   text-decoration: none;
 }
 
-.album-card .collection-name:hover {
-  font-size: 1.2rem;
+.album-card:hover {
+  transition: 0.1s;
+  background-color: rgb(201, 193, 193);
+  padding: 15px;
 }

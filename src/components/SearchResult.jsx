@@ -15,15 +15,15 @@ export default class SearchResult extends Component {
               const { artistName, collectionId, collectionName, artworkUrl100 } = album;
               return (
                 <div key={ collectionId } className="album-card">
-                  <img src={ artworkUrl100 } alt={ `${collectionName} cover` } />
                   <Link
                     to={ `/album/${collectionId}` }
                     data-testid={ `link-to-album-${collectionId}` }
                     className="link"
                   >
+                    <img src={ artworkUrl100 } alt={ `${collectionName} cover` } />
                     <p className="collection-name">{ collectionName }</p>
+                    <p>{ artistName }</p>
                   </Link>
-                  <p>{ artistName }</p>
                 </div>
               );
             })}
