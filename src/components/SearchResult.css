@@ -20,8 +20,8 @@
 }
 
 .link {
-  text-decoration: none;
   color: black;
+  text-decoration: none;
 }
 
 .album-card .collection-name {
@@ -30,7 +30,7 @@
 }
 
 .album-card:hover {
-  transition: 0.1s;
   background-color: rgb(201, 193, 193);
   padding: 15px;
+  transition: 0.1s;
 }
