@@ -85,7 +85,7 @@ Você pode acessar o deploy do projeto no link abaixo:
 
   
 
-https://www.figma.com/file/BDQgAJvOe4KNUjmrYh5t68/TrybeTunes-Figma
+https://project-trybetunes-bmp.vercel.app/
 
   
 
