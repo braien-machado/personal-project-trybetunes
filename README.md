@@ -77,7 +77,9 @@ Neste projeto foi criado o TrybeTunes, uma aplicação capaz de reproduzir músi
 
 - Editar o perfil da pessoa logada;
 
-  
+### Conteúdo da Trybe
+
+  Os arquivos na pasta `services` são de autoria da equipe da Trybe. Os arquivos `.gif` e `.png` da pasta `images` também são de autoria da Trybe, mas serão substituídos assim que o css do projeto for finalizado.
 
 ### Resultado do projeto
 
