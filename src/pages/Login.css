@@ -1,6 +1,7 @@
 .login-page {
   align-items: center;
-  background-color: rgb(224, 224, 224);
+  background-color: #16161a;
+  color: #2cb67d;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -9,15 +10,34 @@
 }
 
 .login-container {
-  background-color: white;
-  border-bottom: 3px solid rgb(160, 159, 159);
+  background-color: #2cb67d;
+  border-bottom: 3px solid #010101;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  padding: 50px 100px;
+  margin-top: 20%;
+  padding: 30px;
   text-align: center;
 }
 
 .login-container label {
   padding-bottom: 15px;
+}
+
+.btn-disabled {
+  background-color: #94a1b2;
+  border-radius: 15px;
+  border: none;
+  color: #fffffe;
+  padding: 8px;
+}
+
+.btn-enabled {
+  background-color: #7f5af0;
+  border-radius: 15px;
+  border: none;
+  color: #fffffe;
+  font-size: large;
+  font-weight: 700;
+  padding: 5px;
 }

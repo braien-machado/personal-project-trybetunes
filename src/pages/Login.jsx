@@ -6,8 +6,8 @@ import Loading from '../components/Loading';
 
 class Login extends React.Component {
   // Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method.
-  // Para resolver esse erro, encontrei a solução nos seguitnes links:
-  // 'https://github.com/material-components/material-components-web-react/issues/434'
+  // Para resolver esse erro, encontrei a solução nos seguintes links:
+  // https://github.com/material-components/material-components-web-react/issues/434
   // https://stackoverflow.com/questions/53414723/typescript-react-avoid-setstate-on-unmounted-components
   constructor(props) {
     super(props);
@@ -58,7 +58,7 @@ class Login extends React.Component {
     return (
       <div data-testid="page-login" className="login-page">
         <header>
-          <i className="fas fa-headphones fa-5x" />
+          <i className="fas fa-headphones fa-10x" />
           <h1>TrybeTunes</h1>
         </header>
         <div className="login-container">
@@ -73,6 +73,7 @@ class Login extends React.Component {
             />
           </label>
           <button
+            className={ isButtonDisabled ? 'btn-disabled' : 'btn-enabled' }
             data-testid="login-submit-button"
             disabled={ isButtonDisabled }
             onClick={ this.handleClick }
